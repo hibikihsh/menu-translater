@@ -2,6 +2,8 @@
 
 海外のメニューを日本語に翻訳することがでるサービス。
 
+![CleanShot 2025-07-06 at 16 49 45@2x](https://github.com/user-attachments/assets/098994e3-1f00-494c-aa91-398007c5db9b)
+
 ## 技術スタック
 
 - **フロントエンド**: Next.js (React + TypeScript)
