@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Menu Translater
 
-## Getting Started
+海外のメニューを日本語に翻訳することがでるサービス。
 
-First, run the development server:
+## 技術スタック
+
+- **フロントエンド**: Next.js (React + TypeScript)
+- **デザインシステム**: shadcn/ui
+- **画像解析**: OpenAI GPT-4 Vision
+- **ホスティング**: Cloudflare Pages
+
+## セットアップ
+
+### 1. 依存関係のインストール
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. 環境変数の設定
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+プロジェクトルートに `.env.local` ファイルを作成し、以下の環境変数を設定してください：
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+```
 
-## Learn More
+OpenAI API キーは [OpenAI Platform](https://platform.openai.com/) から取得できます。
 
-To learn more about Next.js, take a look at the following resources:
+### 3. 開発サーバーの起動
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Cloudflare Pages へのデプロイ
 
-## Deploy on Vercel
+### 1. GitHub リポジトリの準備
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+コードを GitHub リポジトリにプッシュします。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 2. Cloudflare Pages での設定
+
+1. Cloudflare Dashboard にログイン
+2. Pages > Create a project > Connect to Git
+3. リポジトリを選択
+4. ビルド設定：
+   - Framework preset: Next.js
+   - Build command: `pnpm run pages:build`
+   - Build output directory: `.next`
+   - Node.js version: `18` または `20`
+
+### 3. 環境変数の設定
+
+Cloudflare Pages の設定で以下の環境変数を追加：
+
+- `OPENAI_API_KEY`: OpenAI API キー
+
+## 使用方法
+
+### 基本的な流れ
+
+1. **画像アップロード**: メニューの画像（JPG、PNG など）をアップロード
+2. **AI 解析**: 「メニューを解析・翻訳」ボタンをクリックして AI による解析を実行
+3. **内容確認**: 解析されたメニュー項目を確認・編集
+4. **画像生成**: 「メニュー画像を生成」ボタンで新しい画像を作成
+5. **ダウンロード**: 生成された画像を PNG 形式でダウンロード
+
+### 対応言語
+
+- **入力**: 英語、中国語、韓国語、フランス語、イタリア語、スペイン語など多言語対応
+- **出力**: 日本語（魅力的な料理説明付き）
+
+### 解析可能なメニュー形式
+
+- レストランメニュー
+- カフェメニュー
+- 手書きメニュー
+- デジタルメニュー
+- 多段組レイアウト
