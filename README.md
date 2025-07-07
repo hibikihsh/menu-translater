@@ -35,7 +35,7 @@ OpenAI API キーは [OpenAI Platform](https://platform.openai.com/) から取�
 pnpm dev
 ```
 
-## Cloudflare Pages へのデプロイ
+<!-- ## Cloudflare Pages へのデプロイ
 
 ### 1. GitHub リポジトリの準備
 
@@ -56,7 +56,7 @@ pnpm dev
 
 Cloudflare Pages の設定で以下の環境変数を追加：
 
-- `OPENAI_API_KEY`: OpenAI API キー
+- `OPENAI_API_KEY`: OpenAI API キー -->
 
 ## 使用方法
 
